@@ -33,6 +33,7 @@ var Typeahead = (function() {
 
     this.eventBus = o.eventBus;
     this.minLength = _.isNumber(o.minLength) ? o.minLength : 1;
+    this.autocompleteEnabled = o.autocomplete;
 
     this.input = o.input;
     this.menu = o.menu;
@@ -173,7 +174,7 @@ var Typeahead = (function() {
         this.select($selectable) && $e.preventDefault();
       }
 
-      else if ($selectable = this.menu.getTopSelectable()) {
+      else if (this.autocompleteEnabled && ($selectable = this.menu.getTopSelectable())) {
         this.autocomplete($selectable) && $e.preventDefault();
       }
     },
@@ -191,13 +192,13 @@ var Typeahead = (function() {
     },
 
     _onLeftKeyed: function onLeftKeyed() {
-      if (this.dir === 'rtl' && this.input.isCursorAtEnd()) {
+      if (this.autocompleteEnabled && this.dir === 'rtl' && this.input.isCursorAtEnd()) {
         this.autocomplete(this.menu.getTopSelectable());
       }
     },
 
     _onRightKeyed: function onRightKeyed() {
-      if (this.dir === 'ltr' && this.input.isCursorAtEnd()) {
+      if (this.autocompleteEnabled && this.dir === 'ltr' && this.input.isCursorAtEnd()) {
         this.autocomplete(this.menu.getTopSelectable());
       }
     },

@@ -79,7 +79,8 @@
           input: input,
           menu: menu,
           eventBus: eventBus,
-          minLength: o.minLength
+          minLength: o.minLength,
+          autocomplete: o.autocomplete !== false
         }, www);
 
         $input.data(keys.www, www);
