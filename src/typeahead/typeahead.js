@@ -33,7 +33,7 @@ var Typeahead = (function() {
 
     this.eventBus = o.eventBus;
     this.minLength = _.isNumber(o.minLength) ? o.minLength : 1;
-    this.autocompleteEnabled = o.autocomplete;
+    this.autocompleteEnabled = !_.isUndefined(o.autocomplete) ? o.autocomplete : true;
 
     this.input = o.input;
     this.menu = o.menu;
